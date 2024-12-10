@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<h4>Manage Jobs</h4>
+
+<table>
+    <tr>
+        <th>Job Title</th>
+        <th>Location</th>
+        <th>Salary (IDR)</th>
+        <th>No. of Applicants</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for job in jobs %}
+    <tr>
+        <td>{{job.title}}</td>
+        <td>{{job.location}}</td>
+        <td>{{job.salary|intcomma}}</td>
+        <td>{{job.applyjob_set.all.count}} <a href="{% url 'all-applicant' job.pk %}" class="float-right">View all</a></td>
+        {% if job.is_available %}
+            <td><span class="badge bg-success">Active</span></td>
+        {% else %}
+            <td><span class="badge bg-warning">Inactive</span></td>
+        {% endif %}
+        <td><a href="{% url 'update-job' job.pk %}">Update Job</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

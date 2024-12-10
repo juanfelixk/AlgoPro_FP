@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if not request.user.is_authenticated %}
+<div class="alert-container">
+    <div class="alert alert-danger" role="alert">
+        <b>Please log in to view this page.</b>
+    </div>
+</div>
+{% endif %}
+
+<div class="title">
+    {% if request.user.is_recruiter %}
+    {% if not request.user.has_company %}
+    <div class="exception alert alert-danger" role="alert">
+        <b>You have not created a company to post job opportunities. <a href="{% url 'update-company' %}">Create one here</a></b>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% if request.user.is_employee %}
+    {% if not request.user.has_resume %}
+    <div class="exception alert alert-danger" role="alert">
+        <b>You have not created a resume to apply to job opportunities. <a href="{% url 'update-resume' %}">Create one here</a></b>
+    </div>
+    {% endif %}
+    {% endif %}
+    
+    <div class="title-desc">
+        <span class="main-title">Connect Link</span>
+        {% if request.user.is_employee %}
+        <p>Employee's Dashboard</p>
+        {% elif request.user.is_recruiter %}
+        <p>Recruiter's Dashboard</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock content%}

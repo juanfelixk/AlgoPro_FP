@@ -1,0 +1,18 @@
+{% extends 'user/base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<form method="POST" class="login p-4 p-md-5 border rounded-3 bg-light">
+    {% csrf_token %}
+    <label for="floatingInput">Email Address</label>
+    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Email">
+    <label for="floatingInput">Password</label>
+    <input type="password" name="password" class="form-control" id="floatingInput" placeholder="Password">
+    <button type="submit" class="w-100 btn btn-lg btn-primary">Log In</button>
+    Doesn't have an account?<br>
+    <a href="{% url 'register-employee' %}">Sign Up as Employee</a><br>
+    <a href="{% url 'register-recruiter' %}">Sign Up as Recruiter</a>
+</form>
+
+{% endblock content %}

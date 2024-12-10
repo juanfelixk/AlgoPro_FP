@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<form method="POST" class="update-company p-md-5 border rounded-3 bg-light">
+    <h4>Create Job Ad</h4>
+    {% csrf_token %}
+    <label for="floatingInput" class="form-label">Job Title</label>
+    {% render_field form.title class="form-control" %}
+    <label for="floatingInput" class="form-label">Location</label>
+    {% render_field form.location class="form-control" %}
+    <label for="floatingInput" class="form-label">Salary (IDR)</label>
+    {% render_field form.salary class="form-control" %}
+    <label for="floatingInput" class="form-label">Job Requirements</label>
+    {% render_field form.requirements class="form-control" %}
+    <label for="floatingInput" class="form-label">Industry</label>
+    {% render_field form.industry class="form-control" %}
+    <label for="floatingInput" class="form-label">Job Type</label>
+    {% render_field form.job_type class="form-control" %}
+    <div class="checkbox">
+        {% render_field form.is_available class="form-check-input" %}
+        <label for="floatingInput" class="form-label">Job Availability</label>
+    </div>
+    <div class="center">
+        <button type="submit" class="btn btn-primary">Create Job</button>
+    </div>
+</form>
+{% endblock content %}

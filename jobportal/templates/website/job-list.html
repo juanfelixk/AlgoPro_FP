@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="title-desc">
+    <span class="main-title">Connect Link</span>
+    <p>View all available jobs</p>
+    <form method="GET" class="filter-form">
+        <div class="filter">
+            <label for="jobName">Job Name</label>
+            {% render_field filter.form.title class="form-control" placeholder="Enter Job Name" id="jobName" %}
+        </div>
+        <div class="filter">
+            <label for="jobType">Job Type</label>
+            {% render_field filter.form.job_type class="form-select" placeholder="Select Job Type" id="jobType" %}
+        </div>
+        <div class="filter">
+            <label for="industry">Industry</label>
+            {% render_field filter.form.industry class="form-select" placeholder="Select Industry" id="industry" %}
+        </div>
+        <div class="filter">
+            <br>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
+</div>
+
+<div class="job-cards">
+    {% if filter %}
+    {% for job in filter.qs %}
+    <div class="cards">
+        <div class="desc">
+            <h5>{{job.title}}</h5>
+            <p>
+                Industry: {{job.industry}}<br>
+                Location: {{job.location}}<br>
+                Salary: IDR {{job.salary|intcomma}}<br>
+                Job Type: {{job.job_type}}
+            </p>
+            <div class="text-end">
+                <a href="{% url 'job-details' job.pk %}" class="btn btn-primary btn-sm">Learn More</a>
+            </div>
+        </div>
+        <div class="footer">
+            Created {{job.timestamp|naturaltime}}.
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+{% endblock content %}

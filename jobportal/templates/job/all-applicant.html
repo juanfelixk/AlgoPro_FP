@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<h4>All Applicants for {{job.title}}</h4>
+
+<table>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Location</th>
+        <th>Job Title</th>
+        <th>Date of Application</th>
+        <th>Action</th>
+    </tr>
+    {% for applicant in applicants %}
+    <tr>
+        <td>{{applicant.user.resume.first_name}}</td>
+        <td>{{applicant.user.resume.last_name}}</td>
+        <td>{{applicant.user.resume.location}}</td>
+        <td>{{applicant.user.resume.job_title}}</td>
+        <td>{{applicant.timestamp}}</td>
+        <td><a target="_blank" href="{{applicant.user.resume.upload_resume.url}}">Download Resume</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

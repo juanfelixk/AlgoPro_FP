@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" class="update-company p-md-5 border rounded-3 bg-light">
+    
+    {% if request.user.has_resume %}
+    <h4>Update your Resume</h4>
+    {% else %}
+    <h4>Create a Resume</h4>
+    {% endif %}
+
+    {% csrf_token %}
+    <label for="floatingInput" class="form-label">First Name</label>
+    {% render_field form.first_name class="form-control" %}
+    <label for="floatingInput" class="form-label">Last Name</label>
+    {% render_field form.last_name class="form-control" %}
+    <label for="floatingInput" class="form-label">Location</label>
+    {% render_field form.location class="form-control" %}
+    <label for="floatingInput" class="form-label">Job Title</label>
+    {% render_field form.job_title class="form-control" %}
+
+    <br>Please choose either clear or upload resume to proceed.<br>
+
+    <label for="floatingInput" class="form-label">Upload Resume</label>
+    {% render_field form.upload_resume class="form-control" %}
+    <div class="center">
+        <button type="submit" class="btn btn-primary">
+            {% if request.user.has_resume %}
+            Update Resume Details
+            {% else %}
+            Create Resume
+            {% endif %}
+        </button>
+    </div>
+</form>
+{% endblock content %}

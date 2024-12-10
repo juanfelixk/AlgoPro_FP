@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="title-desc">
+    <span class="main-title">{{job.title}}</span>
+    <p>
+        {{job.industry}} | {{job.location}}<br>
+        IDR {{job.salary|intcomma}} | {{job.job_type}}
+    </p>
+    {% if not applied %}
+    <a href="{% url 'apply-to-job' job.pk %}" class="btn btn-primary btn-sm">Apply Now</a>
+    {% else %}
+    <span class="badge bg-secondary">You have applied to this job</span>
+    {% endif %}
+</div>
+
+<div class="job-desc">
+    <h3 class="blue">Job Requirements</h3>
+    <p>{{job.requirements}}</p><br>
+    <h5 class="blue">About the Company</h5>
+    <p>
+        Name: {{job.company.name}}<br>
+        Location: {{job.company.city}}<br>
+        Established Year: {{job.company.est_date}}
+    </p>
+</div>
+
+{% endblock content %}

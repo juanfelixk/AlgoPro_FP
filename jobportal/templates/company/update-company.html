@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<form method="POST" class="update-company p-md-5 border rounded-3 bg-light">
+
+    {% if request.user.has_company %}
+    <h4>Update your Company</h4>
+    {% else %}
+    <h4>Create a Company</h4>
+    {% endif %}
+
+
+    {% csrf_token %}
+    <label for="floatingInput" class="form-label">Company Name</label>
+    {% render_field form.name class="form-control" %}
+    <label for="floatingInput" class="form-label">City</label>
+    {% render_field form.city class="form-control" %}
+    <label for="floatingInput" class="form-label">Establised Year</label>
+    {% render_field form.est_date class="form-control" %}
+    <div class="center">
+        <button type="submit" class="btn btn-primary">
+            {% if request.user.has_company %}
+            Update Company Details
+            {% else %}
+            Create Company
+            {% endif %}
+        </button>
+    </div>
+</form>
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<h4>Job Applications</h4>
+
+<table>
+    <tr>
+        <th>Job Title</th>
+        <th>Location</th>
+        <th>Salary (IDR)</th>
+        <th>Action</th>
+    </tr>
+    {% for job in jobs %}
+    <tr>
+        <td>{{job.job.title}}</td>
+        <td>{{job.job.location}}</td>
+        <td>{{job.job.salary|intcomma}}</td>
+        <td><a href="{% url 'job-details' job.job.pk %}">View Job</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

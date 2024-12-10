@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:AlgoPro_FP}/jobportal/db.sqlite3",
+            "name": "Test"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "JobPortalDB",
+            "database": "${workspaceFolder:AlgoPro_FP}/jobportal/db.sqlite3"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
