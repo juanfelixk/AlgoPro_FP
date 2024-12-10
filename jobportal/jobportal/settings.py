@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'website',
     'widget_tweaks',
     'django_filters',
-]
+] #add user-defined applications to list of installed apps
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,7 +127,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') #for resume file uploading
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -135,4 +135,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'user.User'
-AUTHENTICATION_BACKENDS = ['user.backends.EmailBackend']
+AUTHENTICATION_BACKENDS = ['user.backends.EmailBackend'] #modify backends
