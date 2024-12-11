@@ -7,7 +7,7 @@ from .form import UpdateResumeForm
 # Update Resume Details
 def update_resume(request):
     if request.user.is_employee: #check whether user is an employee
-        resume = Resume.objects.get(user = request.user) #retrieve Resume object of the authenticated user
+        resume = Resume.objects.get(user = request.user) #retrieve resume object of the authenticated user
         if request.method == 'POST': #check whether form is submitted
             form = UpdateResumeForm(request.POST, request.FILES, instance = resume) #retrieve information and file inputted by the user
             if form.is_valid(): 

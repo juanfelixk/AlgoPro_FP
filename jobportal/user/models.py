@@ -7,4 +7,3 @@ class User(AbstractUser): #inheritance from AbstractUser class
     is_employee = models.BooleanField(default=False)
     has_resume = models.BooleanField(default=False)
     has_company = models.BooleanField(default=False)
-    
